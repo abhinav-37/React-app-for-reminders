@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a reminder web app made with react js
 
 ## Available Scripts
 
