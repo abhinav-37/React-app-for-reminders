@@ -1,4 +1,7 @@
 /* Styles to modify the models */
+body {
+    background-color: rgba(194, 197, 202, 0.342) !important;
+}
 .modal-title {
     text-align: flex;
     align-items: center;
@@ -22,6 +25,11 @@ input:focus {
 }
 
 /* styles for the rest */
+.mainClass {
+    display: flex;
+
+    padding-top: 40px;
+}
 .modal-show-btn {
     text-align: right;
 }
@@ -32,8 +40,21 @@ input:focus {
     box-shadow: grey 3px 2px 3px;
 }
 .displayContant {
-    border: 2px solid grey;
+    background-color: rgb(255, 255, 255);
+    display: block !important;
+    box-shadow: 0px 2px 5px grey;
     width: 400px;
     height: 400px;
+    padding: 20px;
+    margin-right: 10px !important;
     overflow: auto;
+}
+
+.displayHeader {
+    border-bottom: 0.003px solid rgba(128, 128, 128, 0.418);
+    margin-bottom: 10px;
+}
+.cardLeft {
+    display: flex;
+    align-items: center;
 }

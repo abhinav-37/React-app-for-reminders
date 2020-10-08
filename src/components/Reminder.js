@@ -40,9 +40,6 @@ export const Reminder = () => {
     let dec = finalForm.filter((e) => e.date.substring(5, 7) === "12");
     return (
         <div>
-            <div>
-                <div></div>
-            </div>
             <div className="container">
                 {/* This is the button to trigger the modal */}
                 <div className="modal-show-btn">
@@ -54,18 +51,41 @@ export const Reminder = () => {
                         <AddIcon /> ADD REMINDER
                     </Button>
                 </div>
-                <ContentDisplay month="January" data={jan} />
-                <ContentDisplay month="February" data={feb} />
-                <ContentDisplay month="March" data={mar} />
-                <ContentDisplay month="Aprir" data={apr} />
-                <ContentDisplay month="May" data={may} />
-                <ContentDisplay month="June" data={jun} />
-                <ContentDisplay month="July" data={july} />
-                <ContentDisplay month="August" data={aug} />
-                <ContentDisplay month="Septmber" data={sep} />
-                <ContentDisplay month="October" data={oct} />
-                <ContentDisplay month="November" data={nov} />
-                <ContentDisplay month="Descember" data={dec} />
+            </div>
+            <div className="container mainClass">
+                {/* This is the place to display all the data by passing it into the contentdisplay component */}
+                {jan.length !== 0 && (
+                    <ContentDisplay month="January" data={jan} />
+                )}
+                {feb.length !== 0 && (
+                    <ContentDisplay month="February" data={feb} />
+                )}
+                {mar.length !== 0 && (
+                    <ContentDisplay month="March" data={mar} />
+                )}
+                {apr.length !== 0 && (
+                    <ContentDisplay month="April" data={apr} />
+                )}
+                {may.length !== 0 && <ContentDisplay month="May" data={may} />}
+                {jun.length !== 0 && <ContentDisplay month="June" data={jun} />}
+                {july.length !== 0 && (
+                    <ContentDisplay month="July" data={july} />
+                )}
+                {aug.length !== 0 && (
+                    <ContentDisplay month="August" data={aug} />
+                )}
+                {sep.length !== 0 && (
+                    <ContentDisplay month="Septmber" data={sep} />
+                )}
+                {oct.length !== 0 && (
+                    <ContentDisplay month="October" data={oct} />
+                )}
+                {nov.length !== 0 && (
+                    <ContentDisplay month="November" data={nov} />
+                )}
+                {dec.length !== 0 && (
+                    <ContentDisplay month="Descember" data={dec} />
+                )}
             </div>
             <div>
                 {/* The modal starts from here */}
