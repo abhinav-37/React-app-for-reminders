@@ -52,6 +52,8 @@ export const Reminder = () => {
         let index = finalForm.indexOf(toDelete[0]);
         finalForm.splice(index, 1);
         setFinalForm(finalForm);
+        setModalShow(true);
+        setModalShow(false);
     };
     //This for displaying the data collected
     let jan = finalForm.filter((e) => e.date.substring(5, 7) === "01");
@@ -109,6 +111,8 @@ export const Reminder = () => {
                     <ContentDisplay
                         sendBottom={sendAtBottom}
                         changer={changer}
+                        del={deleteCard}
+                        singleDelete={singleDelete}
                         month="February"
                         data={feb}
                     />
@@ -117,6 +121,8 @@ export const Reminder = () => {
                     <ContentDisplay
                         sendBottom={sendAtBottom}
                         changer={changer}
+                        del={deleteCard}
+                        singleDelete={singleDelete}
                         month="March"
                         data={mar}
                     />
@@ -125,6 +131,8 @@ export const Reminder = () => {
                     <ContentDisplay
                         sendBottom={sendAtBottom}
                         changer={changer}
+                        del={deleteCard}
+                        singleDelete={singleDelete}
                         month="April"
                         data={apr}
                     />
@@ -133,6 +141,8 @@ export const Reminder = () => {
                     <ContentDisplay
                         sendBottom={sendAtBottom}
                         changer={changer}
+                        del={deleteCard}
+                        singleDelete={singleDelete}
                         month="May"
                         data={may}
                     />
@@ -141,6 +151,8 @@ export const Reminder = () => {
                     <ContentDisplay
                         sendBottom={sendAtBottom}
                         changer={changer}
+                        del={deleteCard}
+                        singleDelete={singleDelete}
                         month="June"
                         data={jun}
                     />
@@ -149,6 +161,8 @@ export const Reminder = () => {
                     <ContentDisplay
                         sendBottom={sendAtBottom}
                         changer={changer}
+                        del={deleteCard}
+                        singleDelete={singleDelete}
                         month="July"
                         data={july}
                     />
@@ -157,6 +171,8 @@ export const Reminder = () => {
                     <ContentDisplay
                         sendBottom={sendAtBottom}
                         changer={changer}
+                        del={deleteCard}
+                        singleDelete={singleDelete}
                         month="August"
                         data={aug}
                     />
@@ -165,6 +181,8 @@ export const Reminder = () => {
                     <ContentDisplay
                         sendBottom={sendAtBottom}
                         changer={changer}
+                        del={deleteCard}
+                        singleDelete={singleDelete}
                         month="Septmber"
                         data={sep}
                     />
@@ -173,6 +191,8 @@ export const Reminder = () => {
                     <ContentDisplay
                         sendBottom={sendAtBottom}
                         changer={changer}
+                        del={deleteCard}
+                        singleDelete={singleDelete}
                         month="October"
                         data={oct}
                     />
@@ -181,6 +201,8 @@ export const Reminder = () => {
                     <ContentDisplay
                         sendBottom={sendAtBottom}
                         changer={changer}
+                        del={deleteCard}
+                        singleDelete={singleDelete}
                         month="November"
                         data={nov}
                     />
@@ -189,6 +211,8 @@ export const Reminder = () => {
                     <ContentDisplay
                         sendBottom={sendAtBottom}
                         changer={changer}
+                        del={deleteCard}
+                        singleDelete={singleDelete}
                         month="Descember"
                         data={dec}
                     />
