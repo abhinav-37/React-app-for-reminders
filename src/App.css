@@ -58,3 +58,7 @@ input:focus {
     display: flex;
     align-items: center;
 }
+.MuiSvgIcon-root:first-child {
+    font-size: 25px !important;
+    cursor: pointer;
+}

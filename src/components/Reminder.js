@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import AddIcon from "@material-ui/icons/Add";
 import CloseIcon from "@material-ui/icons/Close";
 import ContentDisplay from "./ContentDisplay";
+import { v4 as uuidv4 } from "uuid";
 export const Reminder = () => {
     //this is to show or hide the modal
     const [modalShow, setModalShow] = useState(false);
@@ -14,6 +15,7 @@ export const Reminder = () => {
         setFormData((prev) => {
             return {
                 ...prev,
+                key: uuidv4(),
                 [name]: value,
             };
         });
@@ -24,7 +26,33 @@ export const Reminder = () => {
             return [...prev, formData];
         });
     };
+    //function to change the data
+    const changer = (key, data) => {
+        let toChange = finalForm.filter((data) => data.key === key);
+        let index = finalForm.indexOf(toChange[0]);
+        let newArray = [...finalForm];
+        data.key = key;
+        newArray[index] = data;
+        setFinalForm(newArray);
+        console.log(finalForm);
+    };
+    //function to send the value at the bottom
 
+    const sendAtBottom = (key) => {
+        let toSend = finalForm.filter((data) => data.key === key);
+        let index = finalForm.indexOf(toSend[0]);
+        let requiredObject = finalForm.splice(index, 1);
+        let newFinalForm = finalForm.concat(requiredObject);
+        setFinalForm(newFinalForm);
+    };
+
+    //to delete a single entry
+    const singleDelete = (key) => {
+        let toDelete = finalForm.filter((e) => e.key === key);
+        let index = finalForm.indexOf(toDelete[0]);
+        finalForm.splice(index, 1);
+        setFinalForm(finalForm);
+    };
     //This for displaying the data collected
     let jan = finalForm.filter((e) => e.date.substring(5, 7) === "01");
     let feb = finalForm.filter((e) => e.date.substring(5, 7) === "02");
@@ -38,6 +66,19 @@ export const Reminder = () => {
     let oct = finalForm.filter((e) => e.date.substring(5, 7) === "10");
     let nov = finalForm.filter((e) => e.date.substring(5, 7) === "11");
     let dec = finalForm.filter((e) => e.date.substring(5, 7) === "12");
+
+    //function to delte the whole card containing the certen month
+    const deleteCard = (month) => {
+        let toDelete = finalForm.filter(
+            (e) => e.date.substring(5, 7) === month
+        );
+        toDelete.map((m) => {
+            console.log(m);
+            let index = finalForm.indexOf(m);
+            finalForm.splice(index, 1);
+            setFinalForm(finalForm);
+        });
+    };
     return (
         <div>
             <div className="container">
@@ -55,36 +96,102 @@ export const Reminder = () => {
             <div className="container mainClass">
                 {/* This is the place to display all the data by passing it into the contentdisplay component */}
                 {jan.length !== 0 && (
-                    <ContentDisplay month="January" data={jan} />
+                    <ContentDisplay
+                        sendBottom={sendAtBottom}
+                        changer={changer}
+                        del={deleteCard}
+                        singleDelete={singleDelete}
+                        month="January"
+                        data={jan}
+                    />
                 )}
                 {feb.length !== 0 && (
-                    <ContentDisplay month="February" data={feb} />
+                    <ContentDisplay
+                        sendBottom={sendAtBottom}
+                        changer={changer}
+                        month="February"
+                        data={feb}
+                    />
                 )}
                 {mar.length !== 0 && (
-                    <ContentDisplay month="March" data={mar} />
+                    <ContentDisplay
+                        sendBottom={sendAtBottom}
+                        changer={changer}
+                        month="March"
+                        data={mar}
+                    />
                 )}
                 {apr.length !== 0 && (
-                    <ContentDisplay month="April" data={apr} />
+                    <ContentDisplay
+                        sendBottom={sendAtBottom}
+                        changer={changer}
+                        month="April"
+                        data={apr}
+                    />
                 )}
-                {may.length !== 0 && <ContentDisplay month="May" data={may} />}
-                {jun.length !== 0 && <ContentDisplay month="June" data={jun} />}
+                {may.length !== 0 && (
+                    <ContentDisplay
+                        sendBottom={sendAtBottom}
+                        changer={changer}
+                        month="May"
+                        data={may}
+                    />
+                )}
+                {jun.length !== 0 && (
+                    <ContentDisplay
+                        sendBottom={sendAtBottom}
+                        changer={changer}
+                        month="June"
+                        data={jun}
+                    />
+                )}
                 {july.length !== 0 && (
-                    <ContentDisplay month="July" data={july} />
+                    <ContentDisplay
+                        sendBottom={sendAtBottom}
+                        changer={changer}
+                        month="July"
+                        data={july}
+                    />
                 )}
                 {aug.length !== 0 && (
-                    <ContentDisplay month="August" data={aug} />
+                    <ContentDisplay
+                        sendBottom={sendAtBottom}
+                        changer={changer}
+                        month="August"
+                        data={aug}
+                    />
                 )}
                 {sep.length !== 0 && (
-                    <ContentDisplay month="Septmber" data={sep} />
+                    <ContentDisplay
+                        sendBottom={sendAtBottom}
+                        changer={changer}
+                        month="Septmber"
+                        data={sep}
+                    />
                 )}
                 {oct.length !== 0 && (
-                    <ContentDisplay month="October" data={oct} />
+                    <ContentDisplay
+                        sendBottom={sendAtBottom}
+                        changer={changer}
+                        month="October"
+                        data={oct}
+                    />
                 )}
                 {nov.length !== 0 && (
-                    <ContentDisplay month="November" data={nov} />
+                    <ContentDisplay
+                        sendBottom={sendAtBottom}
+                        changer={changer}
+                        month="November"
+                        data={nov}
+                    />
                 )}
                 {dec.length !== 0 && (
-                    <ContentDisplay month="Descember" data={dec} />
+                    <ContentDisplay
+                        sendBottom={sendAtBottom}
+                        changer={changer}
+                        month="Descember"
+                        data={dec}
+                    />
                 )}
             </div>
             <div>
