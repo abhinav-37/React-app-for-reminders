@@ -75,20 +75,20 @@ function ContentDisplay({
                     {data.map((d) => (
                         <div key={d.key}>
                             <div className="row diaplayCard">
-                                <div className="cardLeft col-lg-1">
+                                <div className="cardLeft col-lg-1 col-md-1 col-sm-1">
                                     <Form.Check
                                         onClick={() => checkedClicked(d.key)}
                                         type="checkbox"
                                     />
                                 </div>
-                                <div className="cardCenter col-lg-8">
+                                <div className="cardCenter col-lg-8 col-md-8 col-sm-8">
                                     {d.name}
                                     <br />
                                     {d.description}
                                 </div>
                                 <div
                                     style={{ padding: 0 }}
-                                    className="cardRight col-lg-2 "
+                                    className="cardRight col-lg-2 com-md-2 col-sm-2"
                                 >
                                     <Moment format="D MMM YYYY" date={d.date} />
                                 </div>

@@ -49,11 +49,12 @@ export const Reminder = () => {
     //to delete a single entry
     const singleDelete = (key) => {
         let toDelete = finalForm.filter((e) => e.key === key);
+        debugger;
         let index = finalForm.indexOf(toDelete[0]);
+
         finalForm.splice(index, 1);
-        setFinalForm(finalForm);
-        setModalShow(true);
-        setModalShow(false);
+
+        setFinalForm([...finalForm]);
     };
     //This for displaying the data collected
     let jan = finalForm.filter((e) => e.date.substring(5, 7) === "01");
@@ -78,7 +79,7 @@ export const Reminder = () => {
             console.log(m);
             let index = finalForm.indexOf(m);
             finalForm.splice(index, 1);
-            setFinalForm(finalForm);
+            setFinalForm([...finalForm]);
         });
     };
     return (
