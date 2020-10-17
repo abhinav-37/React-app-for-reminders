@@ -6,6 +6,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import CancelIcon from "@material-ui/icons/Cancel";
 import CreateIcon from "@material-ui/icons/Create";
 import DeleteIcon from "@material-ui/icons/Delete";
+const moment = require("moment")
 function ContentDisplay({
     month,
     data,
@@ -13,11 +14,17 @@ function ContentDisplay({
     sendBottom,
     del,
     singleDelete,
+    preFill
 }) {
     //this is to show or hide the modal
     const [modalShow, setModalShow] = useState(false);
     //this is to take the data from the form
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState({
+        name: "",
+        description: "",
+        time: "",
+        date:""
+    });
     const formFunction = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => {
@@ -27,13 +34,17 @@ function ContentDisplay({
             };
         });
     };
+
     const formFunctionSubmit = (e) => {
         e.preventDefault();
+
         setModalShow(!modalShow);
     };
     //this is to get the data for the object to edit
     const ClickHandler = (d) => {
         setModalShow(!modalShow);
+        let data = preFill(d)
+        setFormData(data)
     };
     const editModalButton = (d) => {
         changer(d, formData);
@@ -53,6 +64,17 @@ function ContentDisplay({
     const singleDeleteHandler = (id) => {
         singleDelete(id);
     };
+    const formatAMPM = (time) => {
+        // Check correct time format and split into components
+        time = time.toString ().match (/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
+
+        if (time.length > 1) { // If time format correct
+            time = time.slice (1);  // Remove full string match value
+            time[5] = +time[0] < 12 ? 'AM' : 'PM'; // Set AM/PM
+            time[0] = +time[0] % 12 || 12; // Adjust hours
+    }
+  return time.join (''); // return adjusted time or original string
+    }
     return (
         // This is the thing that displays the content
         <div className="displayContant">
@@ -91,6 +113,10 @@ function ContentDisplay({
                                     className="cardRight col-lg-2 com-md-2 col-sm-2"
                                 >
                                     <Moment format="D MMM YYYY" date={d.date} />
+                                    <br />
+                                    <p>
+                                       <p> {formatAMPM(d.time)} </p>
+                                    </p>
                                 </div>
                                 <form
                                     style={{ padding: 0 }}
@@ -119,7 +145,6 @@ function ContentDisplay({
                             </div>
                             <hr />
                             <Modal
-                                onHide={() => setModalShow(!modalShow)}
                                 show={modalShow}
                                 size="md"
                                 aria-labelledby="contained-modal-title-vcenter"
@@ -129,7 +154,7 @@ function ContentDisplay({
                                 <Form onSubmit={formFunctionSubmit}>
                                     <Modal.Header className="modal-title ">
                                         <Modal.Title id="contained-modal-title-vcenter">
-                                            Add New Reminder
+                                            Edit Reminder
                                         </Modal.Title>
                                     </Modal.Header>
                                     <Modal.Body>
@@ -139,19 +164,19 @@ function ContentDisplay({
                                                 onChange={formFunction}
                                                 name="name"
                                                 required
+                                                value={formData.name}
                                                 type="text"
                                                 placeholder="Name"
                                             />
                                         </Form.Group>
 
-                                        <Form.Group
-                                            onSubmit={formFunctionSubmit}
-                                        >
+                                        <Form.Group>
                                             <Form.Label>Description</Form.Label>
                                             <Form.Control
                                                 onChange={formFunction}
                                                 name="description"
                                                 required
+                                                value={formData.description}
                                                 type="text"
                                                 placeholder="Description"
                                             />
@@ -161,6 +186,7 @@ function ContentDisplay({
                                             <Form.Control
                                                 onChange={formFunction}
                                                 name="time"
+                                                value={formData.value}
                                                 required
                                                 type="time"
                                                 placeholder="Time"
@@ -171,6 +197,7 @@ function ContentDisplay({
                                             <Form.Control
                                                 onChange={formFunction}
                                                 name="date"
+                                                value={formData.date}
                                                 required
                                                 type="date"
                                                 placeholder="Date"

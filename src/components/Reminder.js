@@ -25,6 +25,7 @@ export const Reminder = () => {
         setFinalForm((prev) => {
             return [...prev, formData];
         });
+        setModalShow(!modalShow);
     };
     //function to change the data
     const changer = (key, data) => {
@@ -34,7 +35,7 @@ export const Reminder = () => {
         data.key = key;
         newArray[index] = data;
         setFinalForm(newArray);
-        console.log(finalForm);
+       
     };
     //function to send the value at the bottom
 
@@ -49,13 +50,19 @@ export const Reminder = () => {
     //to delete a single entry
     const singleDelete = (key) => {
         let toDelete = finalForm.filter((e) => e.key === key);
-        debugger;
+      
         let index = finalForm.indexOf(toDelete[0]);
 
         finalForm.splice(index, 1);
 
         setFinalForm([...finalForm]);
     };
+
+    //to send the prefilled values
+    const preFill = (key) => {
+        let preFillData = finalForm.filter((e) => e.key === key);
+        return(preFillData[0])
+    }
     //This for displaying the data collected
     let jan = finalForm.filter((e) => e.date.substring(5, 7) === "01");
     let feb = finalForm.filter((e) => e.date.substring(5, 7) === "02");
@@ -96,10 +103,11 @@ export const Reminder = () => {
                     </Button>
                 </div>
             </div>
-            <div className="container mainClass">
+            <div className=" mainClass">
                 {/* This is the place to display all the data by passing it into the contentdisplay component */}
                 {jan.length !== 0 && (
                     <ContentDisplay
+                        preFill = {preFill}
                         sendBottom={sendAtBottom}
                         changer={changer}
                         del={deleteCard}
@@ -110,6 +118,7 @@ export const Reminder = () => {
                 )}
                 {feb.length !== 0 && (
                     <ContentDisplay
+                         preFill = {preFill}
                         sendBottom={sendAtBottom}
                         changer={changer}
                         del={deleteCard}
@@ -120,6 +129,7 @@ export const Reminder = () => {
                 )}
                 {mar.length !== 0 && (
                     <ContentDisplay
+                         preFill = {preFill}
                         sendBottom={sendAtBottom}
                         changer={changer}
                         del={deleteCard}
@@ -130,6 +140,7 @@ export const Reminder = () => {
                 )}
                 {apr.length !== 0 && (
                     <ContentDisplay
+                         preFill = {preFill}
                         sendBottom={sendAtBottom}
                         changer={changer}
                         del={deleteCard}
@@ -140,6 +151,7 @@ export const Reminder = () => {
                 )}
                 {may.length !== 0 && (
                     <ContentDisplay
+                         preFill = {preFill}
                         sendBottom={sendAtBottom}
                         changer={changer}
                         del={deleteCard}
@@ -150,6 +162,7 @@ export const Reminder = () => {
                 )}
                 {jun.length !== 0 && (
                     <ContentDisplay
+    preFill = {preFill}
                         sendBottom={sendAtBottom}
                         changer={changer}
                         del={deleteCard}
@@ -160,6 +173,7 @@ export const Reminder = () => {
                 )}
                 {july.length !== 0 && (
                     <ContentDisplay
+                         preFill = {preFill}
                         sendBottom={sendAtBottom}
                         changer={changer}
                         del={deleteCard}
@@ -170,6 +184,7 @@ export const Reminder = () => {
                 )}
                 {aug.length !== 0 && (
                     <ContentDisplay
+                         preFill = {preFill}
                         sendBottom={sendAtBottom}
                         changer={changer}
                         del={deleteCard}
@@ -180,6 +195,7 @@ export const Reminder = () => {
                 )}
                 {sep.length !== 0 && (
                     <ContentDisplay
+                         preFill = {preFill}
                         sendBottom={sendAtBottom}
                         changer={changer}
                         del={deleteCard}
@@ -190,6 +206,7 @@ export const Reminder = () => {
                 )}
                 {oct.length !== 0 && (
                     <ContentDisplay
+                         preFill = {preFill}
                         sendBottom={sendAtBottom}
                         changer={changer}
                         del={deleteCard}
@@ -200,6 +217,7 @@ export const Reminder = () => {
                 )}
                 {nov.length !== 0 && (
                     <ContentDisplay
+                         preFill = {preFill}
                         sendBottom={sendAtBottom}
                         changer={changer}
                         del={deleteCard}
@@ -210,6 +228,7 @@ export const Reminder = () => {
                 )}
                 {dec.length !== 0 && (
                     <ContentDisplay
+                         preFill = {preFill}
                         sendBottom={sendAtBottom}
                         changer={changer}
                         del={deleteCard}
@@ -285,11 +304,7 @@ export const Reminder = () => {
                             >
                                 <CloseIcon /> Cancel
                             </Button>
-                            <Button
-                                onClick={() => setModalShow(!modalShow)}
-                                variant="secondary"
-                                type="submit"
-                            >
+                            <Button variant="secondary" type="submit">
                                 <AddIcon /> Add New
                             </Button>
                         </Modal.Footer>
