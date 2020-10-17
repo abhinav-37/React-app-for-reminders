@@ -6,7 +6,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import CancelIcon from "@material-ui/icons/Cancel";
 import CreateIcon from "@material-ui/icons/Create";
 import DeleteIcon from "@material-ui/icons/Delete";
-const moment = require("moment")
+
 function ContentDisplay({
     month,
     data,
